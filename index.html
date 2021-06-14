@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: sans-serif;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 550px;
+            width: 100%;
+            margin: 0 auto;
+            background: #303517;
+        }
+
+        .grid > div {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+        .square {
+            width: 23%;
+            position: relative;
+        }
+
+        .shrub {
+            position: absolute;
+            left: 0;
+            bottom: 0.2em;
+        }
+
+        .title-header, .title-timer, .title-score, .number-kills {
+            padding: 0.3em;
+            font-family: cursive;
+            letter-spacing: 1px;
+            word-spacing: 1px;
+            text-align: center;
+            margin-bottom: 0.3em;
+        }
+
+        .timer, .score, .kills {
+            padding: 0.3em 0.5em;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .control-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0.5em;
+        }
+
+        button {
+            padding: 0.5em 1.3em;
+            margin: 0.2em;
+            font-size: 1rem;
+            border-radius: 300px;
+            border: 0;
+            outline: none;
+            color: #fff;
+        }
+
+        .play {
+            background: #000;
+        }
+
+        .reset {
+            background: red;
+        }
+
+        button:hover {
+            color: #ddd;
+        }
+
+        .monster {
+            transform: scale(1,0);
+        }
+
+        .monster-active {
+            transform: scale(1,1);
+            transform-origin: bottom;
+            transition: transform .5s linear;
+        }
+
+    </style>
+
+    <title>Kill the Chupacabra</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1 class="title-header">Kill the Chupacabra</h1>
+
+        <h2 class="title-timer">Timer <span class="timer">30</span></h2>
+
+        <h2 class="title-score">Score <span class="score">0</span></h2>
+
+        <h2 class="number-kills">Kills <span class="kills">0</span></h2>
+
+
+        <div class="grid">
+
+            <div class="row">
+
+                <div class="square">
+
+                    <img src="./img/monster.png" class="monster" id="1">
+                    <img src="./img/shrub.png" class="shrub">
+
+                </div>
+
+                <div class="square">
+
+                    <img src="./img/monster.png" class="monster" id="2">
+                    <img src="./img/shrub.png" class="shrub">
+
+                </div>
+
+                <div class="square">
+
+                    <img src="./img/monster.png" class="monster" id="3">
+                    <img src="./img/shrub.png" class="shrub">
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="square">
+
+                    <img src="./img/monster.png" class="monster" id="4">
+                    <img src="./img/shrub.png" class="shrub">
+
+                </div>
+
+                <div class="square">
+
+                    <img src="./img/monster.png" class="monster" id="5">
+                    <img src="./img/shrub.png" class="shrub">
+
+                </div>
+
+                <div class="square">
+
+                    <img src="./img/monster.png" class="monster" id="6">
+                    <img src="./img/shrub.png" class="shrub">
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="square">
+
+                    <img src="./img/monster.png" class="monster" id="7">
+                    <img src="./img/shrub.png" class="shrub">
+
+                </div>
+
+                <div class="square">
+
+                    <img src="./img/monster.png" class="monster" id="8">
+                    <img src="./img/shrub.png" class="shrub">
+
+                </div>
+
+                <div class="square">
+
+                    <img src="./img/monster.png" class="monster" id="9">
+                    <img src="./img/shrub.png" class="shrub">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="control-container">
+
+            <button class="play">Start</button>
+
+            <button class="reset">Reset</button>
+
+        </div>
+
+    </div>
+
+
+<script>
+
+    // selecting all monster images
+
+    let monsters = document.querySelectorAll(".monster");
+
+    // selecting score field
+
+    let scoreContainer = document.querySelector(".score");
+
+    // selecting timer field
+
+    let timerContainer = document.querySelector(".timer");
+
+    let counter = timerContainer.textContent;
+
+
+
+    // converting node list into an array
+
+    let monsterArr = Array.prototype.slice.call(monsters);
+
+    let random;
+
+    let hitPosition;
+
+    let score = 0;
+
+    //
+
+
+
+    function renderGame() {
+
+        // removing monster-active class from all the monsters
+
+        monsterArr.forEach(curr => {
+            curr.classList.remove("monster-active");
+        });
+
+        // creating random no to show the monster
+
+        random = Math.floor(Math.random()*monsterArr.length);
+
+        monsterArr[random].classList.add("monster-active");
+
+        hitPosition = monsterArr[random].id;
+
+    }
+
+    renderGame();
+
+    // checking scores of game
+
+    function renderScore() {
+
+        // selecting all the monsters
+
+        monsterArr.forEach(curr => {
+            curr.addEventListener("click", function() {
+                if (hitPosition == curr.id) {
+                    score++;
+
+                    scoreContainer.textContent = score;
+                }
+            })
+        })
+
+    }
+
+    renderScore();
+
+
+    // rendering timer
+
+    let interval;
+
+    function renderTimer() {
+        if (counter > 0) {
+            counter--;
+
+            timerCounter.textContent = counter;
+        } else {
+            clearInterval(interval);
+        }
+
+    }
+
+    interval = setInterval(renderTimer, 1000);
+
+
+</script>
+    
+</body>
+</html>
