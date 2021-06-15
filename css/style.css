@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  font-family: "Trade Winds", cursive;
+  font-size: 18px;
+}
+
+.container {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  background-image: url("../img/backgound.jpg");
+  /* background: #4a531e; */
+}
+
+.container-points {
+  margin-bottom: 7em;
+}
+
+.grid > div {
+  margin: 0 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.square1 {
+  margin: auto;
+  width: 18%;
+  position: relative;
+}
+
+.square2 {
+  margin: auto;
+  width: 24%;
+  position: relative;
+}
+
+.square3 {
+  margin: auto;
+  width: 30%;
+  position: relative;
+}
+
+.shrub {
+  max-width: 900%;
+  width: 90%;
+  height: auto;
+  position: absolute;
+  left: 0;
+  bottom: 0.4em;
+}
+
+.monster {
+  max-width: 70%;
+  width: 70%;
+  height: auto;
+  margin-bottom: 25px;
+  transform: scale(1, 0);
+}
+
+.monster-active {
+  transform: scale(1, 1);
+  transform-origin: bottom;
+  transition: transform 0.4s linear;
+}
+
+.title-header,
+.title-timer,
+.title-score,
+.number-monsters {
+  font-family: "Trade Winds", cursive;
+  color: rgb(245, 245, 245);
+  text-shadow: 5px 5px 5px black;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 0.2em;
+}
+
+.title-header {
+  color: rgb(206, 13, 13);
+  padding: 0.3em;
+  text-align: center;
+}
+
+.timer,
+.score,
+.monsters {
+  color: rgb(206, 13, 13);
+}
+
+.control-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5em;
+}
+
+button {
+  padding: 0.5em 1.3em;
+  margin: 0.2em;
+  margin-bottom: 1em;
+  font-family: "Trade Winds", cursive;
+  font-size: 1rem;
+  border-radius: 300px;
+  border: 0;
+  outline: none;
+  color: rgb(245, 245, 245);
+  text-shadow: 2px 2px 2px black;
+  box-shadow: 6px 6px 8px black;
+}
+
+.play {
+  background: rgb(206, 13, 13);
+}
+
+.reset {
+  background: black;
+}
+
+button:hover {
+  color: rgb(207, 207, 207);
+}
