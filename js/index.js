@@ -46,6 +46,9 @@
 
         monsterArr[random].classList.add("monster-active");
 
+        const soundMonster = document.querySelector('.sound-monster');
+            soundMonster.play();
+        
         hitPosition = monsterArr[random].id;
 
         count++;
@@ -64,6 +67,8 @@
 
         monsterArr.forEach(curr => {
             curr.addEventListener("click", function() {
+                const soundGun = document.querySelector('.sound-gun');
+                    soundGun.play();
                 if (hitPosition == curr.id) {
                     score++;
 
@@ -103,10 +108,13 @@
 
     // adding controls
 
-    document.querySelector(".play").addEventListener("click", function() {
+    document.querySelector(".play").addEventListener("click", function() {     
         if (!interval) {
             interval = setInterval(update, 1000);
+            const soundNight = document.querySelector('.sound-night');
+            soundNight.play();
         }
+
     });
 
     document.querySelector(".reset").addEventListener("click", function() {

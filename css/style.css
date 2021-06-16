@@ -6,17 +6,18 @@
 
 body,
 html {
+  background-image: url("../img/backgound-body.jpg");
   height: 100%;
   font-family: "Trade Winds", cursive;
   font-size: 18px;
 }
 
 .container {
-  max-width: 700px;
+  min-width: 480px;
+  max-width: 600px;
   width: 100%;
   margin: 0 auto;
   background-image: url("../img/backgound.jpg");
-  /* background: #4a531e; */
 }
 
 .container-points {
